@@ -20,9 +20,7 @@ config(['$routeProvider', function($routeProvider) {
         setUser: function(value) {
             $window.localStorage.setItem("currentUser", angular.toJson(value));
         },
-        getEndpoint : function(){
-            return 'https://timezonewiki-aebf0.firebaseio.com/';
-        },
+        
         changeLocation : function(nextLocation){
             $timeout(function(){
                 $location.path(nextLocation);

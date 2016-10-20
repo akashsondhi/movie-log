@@ -42,7 +42,7 @@ angular.module('myApp.welcome', ['ngRoute'])
     }
 
     $scope.update = function () {
-        var userId = CommonProp.getUserId();
+        var userId = CommonProp.getUser().uid;
         firebase.database().ref('users/' + userId + '/posts/' + $scope.editLog.$id).update({
             theatre: $scope.editLog.theatre,
             peopleCount: $scope.editLog.peopleCount,
@@ -63,7 +63,7 @@ angular.module('myApp.welcome', ['ngRoute'])
     }
 
     $scope.deletePost = function () {
-        var userId = CommonProp.getUserId();
+        var userId = CommonProp.getUser().uid;
         firebase.database().ref('users/' + userId + '/posts/' + $scope.postToDelete.$id).remove().then(function (ref) {
             $timeout(function () {
                 $('#deleteModal').modal('hide');
