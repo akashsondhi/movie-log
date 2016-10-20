@@ -1,12 +1,14 @@
 body{
     padding:0 !important;
     background-color:#fff !important;
+    font-family: 'Indie Flower', cursive;
 }
 /* app css stylesheet */
 .main-title{
     font-family: 'Indie Flower', cursive;
     font-size: 50px;
 }
+
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -54,8 +56,18 @@ body{
     font-style: italic;
 }
 
-.fetching-logs, .no-logs{
+.fetching-logs, .no-logs, .no-filter-logs{
     font-size: 16px;
     font-style: italic;
     text-align:center;
+    margin-top: 20px;
+}
+.search-box{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.movie-log-data{
+    max-height: 600px;
+    overflow: auto;
 }

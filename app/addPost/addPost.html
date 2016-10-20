@@ -5,7 +5,7 @@
             <nav class="blog-nav">
                 <a class="blog-nav-item " href="#/welcome">Home</a>
                 <a class="blog-nav-item active" href="#/addPost">Add Movie-log</a>
-                <span class="pull-right"><span class="login-info">Logged In as {{username}} | </span><a class="blog-nav-item" href="#/logout">Logout</a></span>
+                <span class="pull-right"><span class="login-info hidden-xs hidden-sm">Logged in as {{username}} | </span><a class="blog-nav-item" href="#/logout">Logout</a></span>
             </nav>
         </div>
     </div>
@@ -50,7 +50,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="txtCost">Total Tickets Cost</label>
                     <div class="col-md-4">
-                        <input id="txtCost" name="txtCost" required ng-model="movie.tktCost" type="number" class="form-control input-md">
+                     <input id="txtCost" name="txtCost" placeholder="INR" required ng-model="movie.tktCost" type="number" class="form-control input-md">
                     </div>
                 </div>
 
@@ -74,7 +74,7 @@
     </div>
     <!-- /.container -->
 
-    <movie-log-footer></movie-log-footer>
+   
 
 
 

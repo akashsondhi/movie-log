@@ -6,37 +6,44 @@
             <nav class="blog-nav">
                 <a class="blog-nav-item active" href="#/welcome">Home</a>
                 <a class="blog-nav-item " href="#/addPost">Add Movie-log</a>
-                <span class="pull-right"><span class="login-info">Logged In as {{username}} | </span><a class="blog-nav-item" href="#/logout">Logout</a></span>
+                <span class="pull-right"><span class="login-info hidden-xs hidden-sm">Logged in as {{username}} | </span><a class="blog-nav-item" href="#/logout">Logout</a></span>
             </nav>
         </div>
     </div>
-    <movie-log-header></movie-log-header>
+    
     <div class="container">
         <div class="page-header">
             <h2 class="main-title">My Movie-log</h2>
         </div>
-        
-        <table class="table">
+        <div>
+            <input type="text" class="form-control search-box" id="txtSearch" placeholder="Search and Filter by Movie Name" ng-model="search.name"/></div>
+        <div class="table-responsive">
+        <table class="table movie-log-data" ng-if="((articles|filter:search:strict).length>0)">
             <tr>
                 <th>Movie Name</th>
                 <th>Theatre</th>
                 <th>Date</th>
                 <th>No. of people went</th>
                 <th>Total Tickets Cost</th>
+                <th></th>
+                <th></th>
             </tr>
-            <tr ng-repeat="article in articles track by $index">
+            
+            <tr ng-repeat="article in articles | filter:search:strict track by $index">
                 <td >{{article.name}}</td>
                 <td >{{article.theatre}}</td>
-                <td >{{article.date}}</td>
+                <td >{{article.date|date:'dd/MM/yyyy'}}</td>
                 <td >{{article.peopleCount}}</td>
-                <td >{{article.tktCost}}</td>
+                <td >{{article.tktCost|currency:'&#8377; '}}</td>
                 <td><button class="btn btn-xs btn-info" ng-click="editPost($index)" data-target="#editModal">EDIT</button></td>
                   <td><button class="btn btn-xs btn-warning" ng-click="confirmDelete($index)" data-target="#deleteModal" >DELETE</button></td>
             </tr>
             
         </table>
+        </div>
         <div class="container fetching-logs" ng-if="!articlesLoaded">Fetching Movie-logs. Please wait...</div>
         <div class="container no-logs" ng-if="!(articles.length>0) && articlesLoaded">No Entries Found. Create a <a href="#/addPost">new Movie-log</a>.</div>
+       <div class="container no-filter-logs" ng-if="!((articles|filter:search:strict).length>0) && articlesLoaded">You haven't seen any movie with that name as of now.</div>
        
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -80,7 +87,7 @@
                             <div class="form-group">
                                 <label class=" control-label" for="txtCost">Total Tickets Cost</label>
                                 <div class="">
-                                    <input id="txtCost" name="txtCost" required ng-model="editLog.tktCost"  class="form-control input-md">
+                                 <input id="txtCost" placeholder="INR" name="txtCost" required ng-model="editLog.tktCost"  class="form-control input-md">
                                 </div>
                             </div>
                     </div>
@@ -112,7 +119,7 @@
 
     </div>
 
-    <movie-log-footer></movie-log-footer>
+    
 
 </div>
 
