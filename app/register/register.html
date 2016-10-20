@@ -1,0 +1,30 @@
+    <link href="justified-nav.css" rel="stylesheet">
+		 <link rel="stylesheet" type="text/css" href="ladda-themeless.min.css">
+   <div class="container">
+    <div class="jumbotron" style="padding-bottom:0px;">
+        <h2 class="main-title">Movie-log</h2>
+    </div>
+    <form class="form-signin" name="regForm">
+        <div class="form-group" ng-class="{ 'has-error' : regForm.email.$invalid }">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" ng-model="user.email">
+            <p class="help-block" ng-show="regForm.email.$invalid">Enter a valid email.</p>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error' : regForm.password.$invalid }">
+            <label>Password</label>
+
+            <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="8">
+            <p class="help-block" ng-show="regForm.password.$error.minlength">Min password length is 8 characters.</p>
+            <p style="color:red;" ng-show="regError">{{regErrorMessage}}</p>
+        </div>
+        <label class="checkbox">
+            <em>Already Registered? <a href="#/home"> Sign In</a></em>
+        </label>
+        <button type="button" ladda-loading="login.loading" data-style="expand-right" ng-click="signUp();" ng-disabled="!user.email || !user.password" class="btn btn-lg segoe-ui-light ladda-button btn-primary btn-block">Register</button>
+    </form>
+
+
+
+</div>
+
+<movie-log-footer></movie-log-footer>
