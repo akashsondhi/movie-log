@@ -9,8 +9,8 @@ angular.module('myApp.register', ['ngRoute','firebase'])
   });
 }])
 
-.controller('RegisterCtrl', ['$scope','$location','$firebaseAuth', 'CommonProp', function($scope,$location,$firebaseAuth,CommonProp) {
- 	$scope.mesg = 'Hello';
+.controller('RegisterCtrl', ['$scope','$location','$firebaseAuth', 'CommonProp','$timeout', function($scope,$location,$firebaseAuth,CommonProp, $timeout) {
+ 	var _self = $scope;
  	if(CommonProp.getUser()){
         CommonProp.changeLocation('/welcome');
 }
@@ -27,14 +27,18 @@ $scope.login=login;
             firebase.auth().createUserWithEmailAndPassword(email, password)
                 .then(function() {
                     // do things if success
-                    console.log('User creation success');
-                    CommonProp.changeLocation('/home');    
-                
+                login.loading = false;
+                 _self.regSuccessMessage = "Registered successfully. Proceeding to Sign In now"
+                 _self.regError = false;
+                $timeout(function(){CommonProp.changeLocation('/home');  }, 1000);  
+                _self.$digest();
                 }, function(error) {
                     // do things if failure
                     console.log(error);
-                    $scope.regError = true;
-                    $scope.regErrorMessage = error.message;
+                login.loading = false;
+                    _self.regError = true;
+                    _self.regErrorMessage = error.message;
+                _self.$digest();
                 });
         }
     }

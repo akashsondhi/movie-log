@@ -4,6 +4,8 @@
     <div class="jumbotron" style="padding-bottom:0px;">
         <h2 class="main-title">Movie-log</h2>
     </div>
+       <p class="error-message text-danger" ng-show="regError===true" ng-bind="regErrorMessage"></p>
+       <p class="error-message text-success" ng-show="regError===false" ng-bind="regSuccessMessage"></p>
     <form class="form-signin" name="regForm">
         <div class="form-group" ng-class="{ 'has-error' : regForm.email.$invalid }">
             <label>Email</label>
@@ -15,7 +17,7 @@
 
             <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="8">
             <p class="help-block" ng-show="regForm.password.$error.minlength">Min password length is 8 characters.</p>
-            <p style="color:red;" ng-show="regError">{{regErrorMessage}}</p>
+            
         </div>
         <label class="checkbox">
             <em>Already Registered? <a href="#/home"> Sign In</a></em>

@@ -71,3 +71,6 @@ body{
     max-height: 600px;
     overflow: auto;
 }
+.error-message{
+    text-align:center;
+}
